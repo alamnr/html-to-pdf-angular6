@@ -1,21 +1,108 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div id="content" #content>
+  <mat-card>
+    <div class="alert alert-info" id="content" #content>
+      <strong>Html To PDF Conversion - Angular 6</strong>
+    </div>
+    <div>
+      <input type="button" value="CPTURE" (click)="captureScreen()" />
+    </div>
+  </mat-card>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div>
 
+    <div id="contentToConvert">
+  <div class="table-responsive">
+    <mat-card>
+
+      <table  class="table table-sm table-striped table-bordered">
+        <tr>
+          <th>Column1</th>
+          <th>Column2</th>
+          <th>Column3</th>
+        </tr>
+        <tr>
+          <td>Row 1</td>
+          <td>Row 1</td>
+          <td>Row 1</td>
+        </tr>
+        <tr>
+          <td>Row 2</td>
+          <td>Row 2</td>
+          <td>Row 2</td>
+        </tr>
+        <tr>
+          <td>Row 3</td>
+          <td>Row 3</td>
+          <td>Row 3</td>
+        </tr>
+        <tr>
+          <td>Row 4</td>
+          <td>Row 4</td>
+          <td>Row 4</td>
+        </tr>
+        <tr>
+          <td>Row 5</td>
+          <td>Row 5</td>
+          <td>Row 5</td>
+        </tr>
+        <tr>
+          <td>Row 6</td>
+          <td>Row 6</td>
+          <td>Row 6</td>
+        </tr>
+      </table>
+
+
+    </mat-card>
+  </div>
+
+<!-- <button (click)="downLoadPdf()">Export to Pdf</button> -->
+<hr><br>
+
+<!-- Line Chart with Table -->
+<div class="row" >
+    <div class="col-md-6">
+      <div style="display: block;">
+      <canvas baseChart width="400" height="400"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </div>
+    <div class="col-md-6" style="margin-bottom: 10px">
+      <table class="table table-responsive table-condensed">
+        <tr>
+          <th *ngFor="let label of lineChartLabels">{{label}}</th>
+        </tr>
+        <tr *ngFor="let d of lineChartData">
+          <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+        </tr>
+      </table>
+      <button (click)="randomize()">CLICK</button>
+    </div>
+  </div>
+
+  <!-- Bar Chart with table -->
+  <hr><br>
+  <div>
+      <div style="display: block">
+        <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+      </div>
+      <!-- <button (click)="randomize()">Update</button> -->
+    </div>
+
+    </div>
 <router-outlet></router-outlet>
